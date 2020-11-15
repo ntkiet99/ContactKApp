@@ -1,4 +1,4 @@
-package com.example.contactkapp.ui.notifications;
+package com.example.contactkapp.Activities.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

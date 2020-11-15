@@ -1,4 +1,4 @@
-package com.example.contactkapp;
+package com.example.contactkapp.Activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.contactkapp.R;
 
 public class LoadMainActivity extends AppCompatActivity {
 
@@ -71,9 +72,9 @@ public class LoadMainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(LoadMainActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(LoadMainActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
-        }, 4000);
+        }, 3000);
     }
 
 
@@ -100,4 +101,6 @@ public class LoadMainActivity extends AppCompatActivity {
         actionBar.hide();
         setContentView(R.layout.activity_load_main);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.contactkapp.ui.dashboard;
+package com.example.contactkapp.Activities.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

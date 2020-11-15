@@ -1,4 +1,4 @@
-package com.example.contactkapp.ui.dashboard;
+package com.example.contactkapp.Activities.ui.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

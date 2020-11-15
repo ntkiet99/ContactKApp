@@ -1,7 +1,8 @@
-package com.example.contactkapp;
+package com.example.contactkapp.Activities;
 
 import android.os.Bundle;
 
+import com.example.contactkapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

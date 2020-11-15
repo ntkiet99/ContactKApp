@@ -1,4 +1,4 @@
-package com.example.contactkapp.ui.home;
+package com.example.contactkapp.Activities.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
