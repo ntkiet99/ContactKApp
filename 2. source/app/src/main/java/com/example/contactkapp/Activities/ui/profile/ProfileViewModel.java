@@ -9,7 +9,7 @@ public class ProfileViewModel extends ViewModel {
 
     public ProfileViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Cá nhân nè!");
+        mText.setValue("Thông tin cá nhân");
     }
 
     public LiveData<String> getText() {

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.contactkapp.R;
@@ -23,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText userName, userEmail, userPassword, userConfirmPassword;
     private Button regBtn;
-
+    private ProgressBar loadingProgress;
     private FirebaseAuth mAuth;
 
     @Override
@@ -49,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.txt_register_password);
         userConfirmPassword = findViewById(R.id.txt_register_confirm_password);
         regBtn = findViewById(R.id.btn_create_new_account);
-
+        loadingProgress = findViewById(R.id.regProgressBar);
         // firebase
         mAuth = FirebaseAuth.getInstance();
 
@@ -57,18 +58,25 @@ public class RegisterActivity extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                regBtn.setVisibility(View.INVISIBLE);
+                loadingProgress.setVisibility(View.VISIBLE);
                 final String username = userName.getText().toString();
                 final String email = userEmail.getText().toString();
                 final String password = userPassword.getText().toString();
                 final String passwordConfirm = userConfirmPassword.getText().toString();
                 if(username.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()){
                     ShowMessage("Lỗi! Kiểm tra lại dữ liệu của bạn!");
+                    regBtn.setVisibility(View.VISIBLE);
+                    loadingProgress.setVisibility(View.INVISIBLE);
                 }else if(!password.equals(passwordConfirm)){
                     ShowMessage("Mật khẩu bạn nhập không đồng nhất!");
+                    regBtn.setVisibility(View.VISIBLE);
+                    loadingProgress.setVisibility(View.INVISIBLE);
                 }
                 else{
                     CreateUserAccount(username, email,password);
                 }
+
             }
         });
     }
@@ -83,6 +91,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }else {
                     ShowMessage("Đăng ký tài khoản thất bại!" + task.getException().getMessage());
                 }
+                regBtn.setVisibility(View.VISIBLE);
+                loadingProgress.setVisibility(View.INVISIBLE);
             }
         });
     }

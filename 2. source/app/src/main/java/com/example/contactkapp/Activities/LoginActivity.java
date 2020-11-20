@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.contactkapp.R;
@@ -25,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText userEMail, userPassword;
     private Button btnLogin;
-
+    private ProgressBar loginProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +37,23 @@ public class LoginActivity extends AppCompatActivity {
         userEMail = findViewById(R.id.txt_login_email);
         userPassword = findViewById(R.id.txt_login_password);
         btnLogin = findViewById(R.id.btn_login);
-
+        loginProgressBar = findViewById(R.id.loginProgressBar);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginProgressBar.setVisibility(View.VISIBLE);
+                btnLogin.setVisibility(View.INVISIBLE);
                 final String email = userEMail.getText().toString();
                 final String password = userPassword.getText().toString();
                 if(email.isEmpty() || password.isEmpty()){
                     ShowMessage("Hãy điền đầy đủ thông tin!");
+                    loginProgressBar.setVisibility(View.INVISIBLE);
+                    btnLogin.setVisibility(View.VISIBLE);
                 }
                 else{
                     SignIn(email, password);
                 }
+
             }
         });
 
@@ -67,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    loginProgressBar.setVisibility(View.INVISIBLE);
+                    btnLogin.setVisibility(View.VISIBLE);
                     ShowMessage("Đăng nhập thành công!");
                     UpdateUI();
                 }
@@ -99,5 +108,19 @@ public class LoginActivity extends AppCompatActivity {
         if(user != null){
             UpdateUI();
         }
+    }
+
+    private  long backPressTime;
+    @Override
+    public  void onBackPressed(){
+
+        if (backPressTime + 2000 > System.currentTimeMillis()){
+            this.finishAffinity();
+            System.exit(1);
+            return;
+        }else{
+            Toast.makeText(getBaseContext(),"Bạn muốn thoát khỏi ứng dụng!",Toast.LENGTH_LONG).show();
+        }
+        backPressTime = System.currentTimeMillis();
     }
 }

@@ -14,12 +14,17 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.contactkapp.Activities.ui.profile.ProfileFragment"
-        android:label="Cá nhân"
+        android:label="Thông tin cá nhân"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_qrcode"
         android:name="com.example.contactkapp.Activities.ui.qrcode.QRCodeFragment"
-        android:label="QR Code"
+        android:label="Quét mã QR"
         tools:layout="@layout/fragment_q_r_code" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.contactkapp.Activities.ui.settings.SettingsFragment"
+        android:label="Cài đặt"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
