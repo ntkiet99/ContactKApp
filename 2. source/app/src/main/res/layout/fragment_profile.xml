@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/profile_avatar"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_marginTop="36dp"
@@ -52,7 +52,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/profile_header_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/profile_avatar"
                 app:layout_constraintVertical_bias="1.0">
 
                 <LinearLayout
@@ -61,7 +61,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/profile_displayname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -93,7 +93,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="12dp"
                                 android:text="1000"
                                 android:textColor="@color/purple_200"
                                 android:textSize="18sp"
@@ -118,7 +118,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="12dp"
                                 android:text="1000"
                                 android:textColor="@color/purple_200"
                                 android:textSize="18sp"
@@ -142,7 +142,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="12dp"
                                 android:text="1000"
                                 android:textColor="@color/purple_200"
                                 android:textSize="18sp"
@@ -171,7 +171,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_phone">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -212,24 +213,24 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_phone"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_phone" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_phone"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="1px"-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_phone"-->
+                        <!--                            android:layout_width="0dp"-->
+                        <!--                            android:layout_height="1px"-->
 
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_phone" />-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_phone" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_phone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -247,7 +248,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_gmail">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -288,23 +290,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_gmail"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_gmail" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_gmail"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_gmail" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_gmail"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_gmail" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_gmail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -322,7 +324,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_zalo">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -363,23 +366,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_zalo"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_zalo" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_zalo"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_zalo" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_zalo"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_zalo" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_zalo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -397,7 +400,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_facebook">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -437,23 +441,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_facebook"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_facebook" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_facebook"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_facebook" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_facebook"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_facebook" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_facebook"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -471,7 +475,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_instagram">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -511,23 +516,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_instagram"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_instagram" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_instagram"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_instagram" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_instagram"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_instagram" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_instagram"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -545,7 +550,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_tiktok">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -585,23 +591,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_tiktok"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_tiktok" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_tiktok"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_tiktok" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_tiktok"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_tiktok" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_tiktok"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -619,7 +625,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_twitter">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -649,7 +656,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_github" />
 
                         <TextView
-                            android:id="@+id/profile_content_github"
+                            android:id="@+id/profile_content_twitter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -659,23 +666,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_github"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_github" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_github"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_github" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_github"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_github" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_github"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -693,7 +700,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_wechat">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -723,7 +731,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_twitter" />
 
                         <TextView
-                            android:id="@+id/profile_content_twitter"
+                            android:id="@+id/profile_content_wechat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -733,23 +741,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_twitter"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_twitter" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_twitter"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_twitter" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_twitter"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_twitter" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_twitter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -767,7 +775,8 @@
                     android:layout_marginBottom="1px"
                     android:checkable="true"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:id="@+id/viewcard_github">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -797,7 +806,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_wechat" />
 
                         <TextView
-                            android:id="@+id/profile_content_wechat"
+                            android:id="@+id/profile_content_github"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -807,23 +816,23 @@
                             app:layout_constraintBottom_toBottomOf="@+id/profile_icon_wechat"
                             app:layout_constraintStart_toEndOf="@+id/profile_icon_wechat" />
 
-<!--                        <View-->
-<!--                            android:id="@+id/profile_line_view_wechat"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="1px"-->
-<!--                            android:layout_marginTop="8dp"-->
-<!--                            android:background="#2d2d2d"-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintHorizontal_bias="0.0"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_wechat" />-->
+                        <!--                        <View-->
+                        <!--                            android:id="@+id/profile_line_view_wechat"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="1px"-->
+                        <!--                            android:layout_marginTop="8dp"-->
+                        <!--                            android:background="#2d2d2d"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--                            app:layout_constraintHorizontal_bias="0.0"-->
+                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/profile_content_wechat" />-->
 
                         <ImageButton
                             android:id="@+id/profile_open_wechat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp"
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="0dp"
                             android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_open_in_new"
                             app:layout_constraintBottom_toBottomOf="parent"

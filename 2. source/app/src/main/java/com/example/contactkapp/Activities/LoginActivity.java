@@ -74,13 +74,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    loginProgressBar.setVisibility(View.INVISIBLE);
-                    btnLogin.setVisibility(View.VISIBLE);
                     ShowMessage("Đăng nhập thành công!");
                     UpdateUI();
                 }
                 else{
                     ShowMessage(task.getException().getMessage());
+                    loginProgressBar.setVisibility(View.INVISIBLE);
+                    btnLogin.setVisibility(View.VISIBLE);
                 }
             }
         });

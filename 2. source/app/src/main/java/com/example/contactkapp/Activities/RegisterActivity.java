@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.contactkapp.Models.UserModel;
 import com.example.contactkapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -103,13 +106,28 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-                    ShowMessage("Thiết lập tài khoản hoàn tất!");
+
+                    UserModel userModel = new UserModel(currentUser.getEmail(), currentUser.getDisplayName());
+                    InitInfoUser(userModel);
                     updateUI();
                 }
             }
         });
     }
+    private void InitInfoUser(UserModel userModel) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("UserItem").push();
+        String key = myRef.getKey();
+        userModel.setUserKey(key);
+        userModel.setQRCode(key + userModel.getUserName());
+        myRef.setValue(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                ShowMessage("Thiết lập tài khoản hoàn tất!");
 
+            }
+        });
+    }
     private void updateUI() {
         Intent home = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(home);

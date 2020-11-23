@@ -3,6 +3,8 @@ package com.example.contactkapp.Activities.ui.contact;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ public class ContactFragment extends Fragment {
 
     private ContactViewModel contactViewModel;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         contactViewModel =
@@ -33,6 +36,7 @@ public class ContactFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 

@@ -253,7 +253,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_phone" />
 
                         <TextView
-                            android:id="@+id/profile_content_phone"
+                            android:id="@+id/info_content_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -329,7 +329,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_gmail" />
 
                         <TextView
-                            android:id="@+id/profile_content_gmail"
+                            android:id="@+id/info_content_gmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -404,7 +404,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_zalo" />
 
                         <TextView
-                            android:id="@+id/profile_content_zalo"
+                            android:id="@+id/info_content_zalo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -478,7 +478,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_facebook" />
 
                         <TextView
-                            android:id="@+id/profile_content_facebook"
+                            android:id="@+id/info_content_facebook"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -552,7 +552,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_instagram" />
 
                         <TextView
-                            android:id="@+id/profile_content_instagram"
+                            android:id="@+id/info_content_instagram"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -626,7 +626,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_tiktok" />
 
                         <TextView
-                            android:id="@+id/profile_content_tiktok"
+                            android:id="@+id/info_content_tiktok"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -700,7 +700,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_github" />
 
                         <TextView
-                            android:id="@+id/profile_content_github"
+                            android:id="@+id/info_content_twitter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -774,7 +774,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_twitter" />
 
                         <TextView
-                            android:id="@+id/profile_content_twitter"
+                            android:id="@+id/info_content_wechat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -848,7 +848,7 @@
                             app:layout_constraintTop_toTopOf="@+id/profile_icon_wechat" />
 
                         <TextView
-                            android:id="@+id/profile_content_wechat"
+                            android:id="@+id/info_content_github"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"

@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_setting_background"
         android:layout_width="wrap_content"
         android:layout_height="268dp"
         android:scaleType="centerCrop"
@@ -22,7 +22,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/img_setting_background">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/imageView">
+                app:layout_constraintTop_toBottomOf="@+id/img_setting_background">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_profile_account"
@@ -175,17 +175,17 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageButton
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/btn_setting_img_background"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:background="@drawable/setting_background_cricle"
         android:src="@drawable/edit_image_96px"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/img_setting_background"
+        app:layout_constraintEnd_toEndOf="@+id/img_setting_background"
         app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/img_setting_background"
         app:layout_constraintVertical_bias="0.947" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
