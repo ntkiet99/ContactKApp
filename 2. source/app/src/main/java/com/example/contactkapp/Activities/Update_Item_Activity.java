@@ -55,26 +55,15 @@ public class Update_Item_Activity extends AppCompatActivity {
         txt_item_wechat = findViewById(R.id.txt_item_wechat);
         txt_item_github = findViewById(R.id.txt_item_github);
 
-
         btnUpdate = findViewById(R.id.btn_update_item);
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserModel user = new UserModel(currentUser.getEmail(), txt_item_phone.getText().toString(), txt_item_gmail.getText().toString(), txt_item_zalo.getText().toString(), txt_item_facebook.getText().toString(), txt_item_instagram.getText().toString(), txt_item_tiktok.getText().toString(), txt_item_twitter.getText().toString(), txt_item_wechat.getText().toString(), txt_item_github.getText().toString());
-                try {
-                    UpdateUserItem(user);
-                } catch (Exception e) {
-
-                }
-
+                UpdateUserItem(user);
             }
         });
-        try {
-            LoadUserItem();
-        } catch (Exception e) {
-
-        }
-
+        LoadUserItem();
     }
 
     private void LoadUserItem() {

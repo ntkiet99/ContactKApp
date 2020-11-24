@@ -93,12 +93,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         updateUserItemQuery.keepSynced(false);
         Glide.with(this).load(currentUser.getPhotoUrl()).into(img_avatar);
 
-        Glide.with(this).load(currentUser.getPhotoUrl()).into(img_background);
         profile_displayname.setText(currentUser.getDisplayName());
         updateUserItemQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot broccoli : snapshot.getChildren()) {
+                    Glide.with(getContext()).load(broccoli.child("backgroundUser").getValue(String.class)).into(img_background);
                     content_phone.setText(broccoli.child("phone").getValue(String.class));
                     content_gmail.setText(broccoli.child("gmail").getValue(String.class));
                     content_zalo.setText(broccoli.child("zalo").getValue(String.class));

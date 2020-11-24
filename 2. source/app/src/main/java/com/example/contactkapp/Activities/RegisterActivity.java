@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void InitInfoUser(UserModel userModel) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("UserItem").push();
-        String key = myRef.getKey();
+        String key = mAuth.getCurrentUser().getUid();
         userModel.setUserKey(key);
         userModel.setQRCode(key + userModel.getUserName());
         myRef.setValue(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
