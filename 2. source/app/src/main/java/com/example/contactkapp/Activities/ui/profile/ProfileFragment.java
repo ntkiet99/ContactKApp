@@ -35,13 +35,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private ImageView img_avatar, img_background;
     private TextView profile_displayname, content_phone, content_gmail, content_zalo, content_facebook, content_instagram, content_tiktok, content_twitter, content_wechat, content_github;
     private CardView viewcard_phone, viewcard_gmail, viewcard_zalo, viewcard_facebook, viewcard_instagram, viewcard_tiktok, viewcard_twitter, viewcard_wechat, viewcard_github;
+    private TextView profile_counter_following;
+    private TextView profile_counter_followers;
+    private TextView profile_counter_favorite;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
-
+    private FirebaseDatabase firebaseDatabase;
     private ClipboardManager myClipboard;
     private ClipData myClip;
     String pathImageBackground;
-
+    int counterFollowing = 0;
+    int counterFollowers = 0;
+    int counterFavourites = 0;
     @RequiresApi(api = Build.VERSION_CODES.M)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,8 +55,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         myClipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+
+        profile_counter_following = root.findViewById(R.id.profile_counter_following);
+        profile_counter_following.setText(String.valueOf(counterFollowing));
+
+        profile_counter_followers = root.findViewById(R.id.profile_counter_followers);
+        profile_counter_followers.setText(String.valueOf(counterFollowers));
+
+        profile_counter_favorite = root.findViewById(R.id.profile_counter_favorite);
+        profile_counter_favorite.setText(String.valueOf(counterFavourites));
 
         img_avatar = root.findViewById(R.id.profile_avatar);
         img_background = root.findViewById(R.id.profile_background);
@@ -66,6 +81,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         content_github = root.findViewById(R.id.profile_content_github);
         profile_displayname = root.findViewById(R.id.profile_displayname);
         LoadUserItem();
+        LoadCountFollowers();
+        LoadCountFollowing();
         viewcard_phone = root.findViewById(R.id.viewcard_phone);
         viewcard_gmail = root.findViewById(R.id.viewcard_gmail);
         viewcard_zalo = root.findViewById(R.id.viewcard_zalo);
@@ -88,7 +105,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private void LoadUserItem() {
-        DatabaseReference userItem = FirebaseDatabase.getInstance().getReference().child("UserItem");
+        DatabaseReference userItem = firebaseDatabase.getReference().child("UserItem");
         Query updateUserItemQuery = userItem.orderByChild("userName").equalTo(currentUser.getEmail());
         updateUserItemQuery.keepSynced(false);
         Glide.with(this).load(currentUser.getPhotoUrl()).into(img_avatar);
@@ -99,6 +116,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot broccoli : snapshot.getChildren()) {
                     Glide.with(getContext()).load(broccoli.child("backgroundUser").getValue(String.class)).into(img_background);
+//                    Glide.with(getContext()).load(broccoli.child("avatar").getValue(String.class)).into(img_avatar);
                     content_phone.setText(broccoli.child("phone").getValue(String.class));
                     content_gmail.setText(broccoli.child("gmail").getValue(String.class));
                     content_zalo.setText(broccoli.child("zalo").getValue(String.class));
@@ -116,6 +134,52 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
+    private void LoadCountFollowers(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Follow").child(currentUser.getUid()).child("Followers");
+
+        reference.keepSynced(false);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                counterFollowers = 0;
+                for (DataSnapshot broccoli : snapshot.getChildren()) {
+                    counterFollowers++;
+                }
+
+                profile_counter_followers.setText(String.valueOf(counterFollowers));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+
+    private void LoadCountFollowing(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Follow").child(currentUser.getUid()).child("Following");
+
+        reference.keepSynced(false);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                counterFollowing = 0;
+                for (DataSnapshot broccoli : snapshot.getChildren()) {
+                    counterFollowing++;
+                }
+
+                profile_counter_following.setText(String.valueOf(counterFollowing));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -156,5 +220,27 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             myClipboard.setPrimaryClip(myClip);
             Toast.makeText(getContext(), "Copy text " + text, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void CounterFavorite(String id){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Favorite").child(id).child("Favorites");
+
+        reference.keepSynced(false);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                counterFavourites = 0;
+                for (DataSnapshot broccoli : snapshot.getChildren()) {
+                    counterFavourites++;
+                }
+
+                profile_counter_favorite.setText(String.valueOf(counterFavourites));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }

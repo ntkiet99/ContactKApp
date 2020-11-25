@@ -1,12 +1,15 @@
 package com.example.contactkapp.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +65,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         Glide.with(mContext).load(user.getAvatar()).into(holder.img_avatar);
 
         isFollowing(user.getUserKey(), holder.btn_follow);
-
+        isFavorite(user.getUserKey(), holder.btn_contact_favorite);
         if (user.getUserName().equals(firebaseUser.getEmail())) {
             holder.user_item_container.setMaxHeight(0);
         }
@@ -77,6 +80,36 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             }
         });
 
+        holder.btn_contact_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.btn_contact_favorite.getTag().equals(R.drawable.ic_favorite_border)) {
+                    FirebaseDatabase.getInstance().getReference().child("Favorite").child(user.getUserKey())
+                            .child("Favorites").child(firebaseUser.getUid()).setValue(firebaseUser.getUid());
+                    Toast.makeText(mContext, "Yêu thích!", Toast.LENGTH_SHORT).show();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage("Bạn muốn bỏ yêu thích!").setCancelable(false)
+                            .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    FirebaseDatabase.getInstance().getReference().child("Favorite").child(user.getUserKey())
+                                            .child("Favorites").child(firebaseUser.getUid()).removeValue();
+                                    Toast.makeText(mContext, "Đã bỏ yêu thích!", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            }
+        });
+
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,11 +119,29 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getUserKey())
                             .child("Followers").child(firebaseUser.getUid()).setValue(firebaseUser.getUid());
                 } else {
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("Following").child(user.getUserKey()).removeValue();
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getUserKey())
-                            .child("Followers").child(firebaseUser.getUid()).removeValue();
-                    Toast.makeText(mContext, "Bỏ theo dõi!", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage("Bạn muốn bỏ theo dõi!").setCancelable(false)
+                            .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                                            .child("Following").child(user.getUserKey()).removeValue();
+                                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getUserKey())
+                                            .child("Followers").child(firebaseUser.getUid()).removeValue();
+                                    FirebaseDatabase.getInstance().getReference().child("Favorite").child(user.getUserKey())
+                                            .child("Favorites").child(firebaseUser.getUid()).removeValue();
+
+                                    Toast.makeText(mContext, "Đã bỏ theo dõi!", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -105,6 +156,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         public TextView displayName;
         public TextView email;
         public ImageView img_avatar;
+        public ImageButton btn_contact_favorite;
         public Button btn_follow;
         public ConstraintLayout user_item_container;
         public CardView user_item_cardView;
@@ -118,6 +170,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             btn_follow = itemView.findViewById(R.id.user_item_follow);
             user_item_container = itemView.findViewById(R.id.user_item_container);
             user_item_cardView = itemView.findViewById(R.id.user_item_cardView);
+            btn_contact_favorite = itemView.findViewById(R.id.btn_contact_favorite);
 
             user_item_cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,6 +193,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.child(userid).exists()) {
+
                     button.setText("Đang theo dõi");
                 } else {
 
@@ -153,4 +207,28 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             }
         });
     }
+
+    private void isFavorite(final String userid, final ImageButton button) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Favorite").child(userid).child("Favorites");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(firebaseUser.getUid()).exists()) {
+                    button.setTag(R.drawable.ic_favorite);
+                    button.setImageResource(R.drawable.ic_favorite);
+                } else {
+                    button.setTag(R.drawable.ic_favorite_border);
+                    button.setImageResource(R.drawable.ic_favorite_border);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 }

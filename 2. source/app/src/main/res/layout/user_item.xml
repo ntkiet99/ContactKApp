@@ -23,6 +23,20 @@
             android:layout_width="match_parent"
             android:layout_height="74dp">
 
+            <ImageButton
+
+                android:id="@+id/btn_contact_favorite"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintBottom_toBottomOf="@+id/user_item_follow"
+                app:layout_constraintEnd_toStartOf="@+id/user_item_follow"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/user_item_avatar"
+                app:layout_constraintTop_toTopOf="@+id/user_item_follow" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_item_avatar"
                 android:layout_width="60dp"

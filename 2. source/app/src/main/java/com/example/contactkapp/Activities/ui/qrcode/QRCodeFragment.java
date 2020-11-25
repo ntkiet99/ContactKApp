@@ -1,15 +1,25 @@
 package com.example.contactkapp.Activities.ui.qrcode;
 
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +30,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.example.contactkapp.Activities.AccountActivity;
 import com.example.contactkapp.Activities.ContactDetailActivity;
 
 import com.example.contactkapp.Activities.Update_Item_Activity;
 import com.example.contactkapp.Activities.ui.settings.SettingsViewModel;
 import com.example.contactkapp.R;
+import com.google.common.collect.BiMap;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,12 +52,20 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Random;
+
 
 public class QRCodeFragment extends Fragment {
 
+    private static final int PREQCODE = 3;
     private QRCodeViewModel qrCodeViewModel;
     private Button btnScan;
     private ImageView imvQrCode;
+    private CardView qr_code_img_cardview;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     FirebaseDatabase firebaseDatabase;
@@ -76,10 +96,43 @@ public class QRCodeFragment extends Fragment {
 
         imvQrCode = (ImageView) root.findViewById(R.id.img_qrcode);
 
-            LoadUserItem();
+        LoadUserItem();
 
-
+        qr_code_img_cardview = root.findViewById(R.id.qr_code_img_cardview);
+        qr_code_img_cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAndRequestForPermission();
+            }
+        });
         return root;
+    }
+
+    private void SaveIamge(Bitmap finalBitmap, String name, String id) {
+        try {
+            imvQrCode.setDrawingCacheEnabled(true);
+            Bitmap b = imvQrCode.getDrawingCache();
+            MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), b, name, id);
+            Toast.makeText(getContext(), "Lưu mã QR thành công", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(getContext(), "Lỗi! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void checkAndRequestForPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                Toast.makeText(getActivity(), "Hãy cho phép truy cập bộ nhớ!", Toast.LENGTH_SHORT).show();
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PREQCODE);
+            }
+        } else {
+            try {
+                Bitmap bmp = ((BitmapDrawable) imvQrCode.getDrawable()).getBitmap();
+                SaveIamge(bmp, currentUser.getEmail(), currentUser.getUid());
+            } catch (Exception e) {
+            }
+        }
     }
 
     private void LoadUserItem() {
@@ -123,11 +176,11 @@ public class QRCodeFragment extends Fragment {
                     updateUserItemQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.exists()){
+                            if (snapshot.exists()) {
                                 Intent intent = new Intent(getContext(), ContactDetailActivity.class);
-                                intent.putExtra("data",  result.getContents());
+                                intent.putExtra("data", result.getContents());
                                 startActivity(intent);
-                            }else{
+                            } else {
                                 Toast.makeText(getContext(), "Không tìm thấy thông tin!", Toast.LENGTH_LONG).show();
                             }
                         }

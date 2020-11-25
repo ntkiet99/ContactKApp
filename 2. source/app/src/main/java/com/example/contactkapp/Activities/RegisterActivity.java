@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -101,13 +102,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void UpdateUserInfo(String username, FirebaseUser currentUser) {
-        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+        UserModel userModel = new UserModel(currentUser.getEmail(), currentUser.getDisplayName());
+        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).setPhotoUri(Uri.parse(userModel.getAvatar())).build();
         currentUser.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
 
-                    UserModel userModel = new UserModel(currentUser.getEmail(), currentUser.getDisplayName());
                     InitInfoUser(userModel);
                     updateUI();
                 }

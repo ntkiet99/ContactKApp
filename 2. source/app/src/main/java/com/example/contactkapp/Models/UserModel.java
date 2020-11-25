@@ -36,7 +36,7 @@ public class UserModel {
         this.twitter = "twitter";
         this.wechat = "wechat";
         this.github = "github";
-        this.Avatar = "";
+        this.Avatar = "https://firebasestorage.googleapis.com/v0/b/contactkapp-46957.appspot.com/o/users_photos%2Fimage-k2%40gmail.com-1606286497.jpg?alt=media&token=68b7aeb3-e6e2-4743-bfc4-841e213dc7d4";
         this.backgroundUser = "https://firebasestorage.googleapis.com/v0/b/contactkapp-46957.appspot.com/o/blog_images%2Fimage-background-kiet%40gmail.com1606145632.jpg?alt=media&token=9d02aa65-0c27-4718-ab2c-d0a4144f50ef";
         this.timestamp = ServerValue.TIMESTAMP;
     }
